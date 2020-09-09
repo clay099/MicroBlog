@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import BlogForm from "./BlogForm";
 import "./Post.css";
+import Comments from "./Comments";
+import CommentForm from "./CommentForm";
 
 const Post = ({ post, setPosts }) => {
 	const [edit, setEdit] = useState(false);
-	let { title, description, body, id } = post[0];
+	let { title, description, body, id, comments } = post[0];
 
 	const handleDelete = () => {
 		setPosts((posts) => posts.filter((post) => post.id !== id));
@@ -13,6 +15,15 @@ const Post = ({ post, setPosts }) => {
 	const handleEdit = () => {
 		setEdit(true);
 	};
+
+	let commentData = (
+		<>
+			<hr />
+			<h4 className="display-5 Comments">Comments</h4>
+			<Comments comments={comments} setPosts={setPosts} id={id} />
+			<CommentForm setPosts={setPosts} id={id} />
+		</>
+	);
 
 	title = title.charAt(0).toUpperCase() + title.slice(1);
 
@@ -29,11 +40,11 @@ const Post = ({ post, setPosts }) => {
 				<i>{description}</i>
 			</p>
 			<p>{body}</p>
+			{commentData}
 		</div>
 	);
 
 	if (edit) {
-    
 		postData = (
 			<>
 				<h5>Edit Post</h5>

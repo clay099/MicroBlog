@@ -1,0 +1,7 @@
+.Comment {
+	margin: 15px 0px;
+}
+
+.Comment > i {
+	margin-left: 15px;
+}
