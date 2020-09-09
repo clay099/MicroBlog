@@ -1,0 +1,15 @@
+.navbar-nav > a {
+	color: white;
+	text-decoration: none;
+	margin: 0.6rem;
+}
+
+.navbar-nav > a:hover {
+	color: white;
+	text-decoration: none;
+	font-weight: 800;
+}
+.navbar-nav > .active {
+	text-decoration: underline;
+	font-weight: 800;
+}

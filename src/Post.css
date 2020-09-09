@@ -1,0 +1,16 @@
+.Post-top-line {
+	display: flex;
+	justify-content: space-between;
+}
+
+.Post-top-line > span > i {
+	margin: 5px;
+}
+
+.fa-edit {
+	color: #007bff;
+}
+
+.fa-backspace {
+	color: #dc3545;
+}
