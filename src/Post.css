@@ -2,9 +2,13 @@
 	display: flex;
 	justify-content: space-between;
 }
+.Post-top-line > span {
+	text-align: right;
+}
 
 .Post-top-line > span > i {
 	margin: 5px;
+	text-align: right;
 }
 
 .fa-edit {

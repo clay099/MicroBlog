@@ -8,6 +8,7 @@ export default function posts(state = INITIAL_STATE, action) {
 			return {
 				...state,
 				[action.id]: {
+					...state[action.id],
 					title: action.title,
 					description: action.description,
 				},

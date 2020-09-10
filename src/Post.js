@@ -6,6 +6,7 @@ import CommentForm from "./CommentForm";
 import { removeDatabasePost } from "./actions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import Votes from "./Votes";
 
 const Post = ({ post, id }) => {
 	const [edit, setEdit] = useState(false);
@@ -40,11 +41,13 @@ const Post = ({ post, id }) => {
 				<span>
 					<i className="fas fa-edit" onClick={handleEdit}></i>
 					<i className="fas fa-backspace" onClick={handleDelete}></i>
+					<Votes id={id} />
 				</span>
 			</div>
 			<p>
 				<i>{description}</i>
 			</p>
+
 			<p>{body}</p>
 			{commentData}
 		</div>

@@ -5,6 +5,7 @@ import {
 	REMOVE_COMMENT,
 	GET_POSTS,
 	GET_COMMENTS,
+	VOTE,
 } from "./actionTypes";
 
 import axios from "axios";
@@ -153,6 +154,25 @@ const removeComment = ({ commentId, postId }) => ({
 	postId,
 });
 
+const voteDatabase = ({ id, direction }) => {
+	return async function (dispatch) {
+		try {
+			const { data } = await axios.post(
+				`${API_URL}/${id}/vote/${direction}`
+			);
+			dispatch(vote({ id, votes: data.votes }));
+		} catch (e) {
+			console.log(e);
+		}
+	};
+};
+
+const vote = ({ id, votes }) => ({
+	type: VOTE,
+	id,
+	votes,
+});
+
 export {
 	getAllPosts,
 	getPost,
@@ -162,4 +182,5 @@ export {
 	getComments,
 	addDatabaseComment,
 	removeDatabaseComment,
+	voteDatabase,
 };
