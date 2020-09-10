@@ -1,13 +1,13 @@
 import React from "react";
 import "./Comment.css";
 import { useDispatch } from "react-redux";
-import { removeComment } from "./actions";
+import { removeDatabaseComment } from "./actions";
 
 const Comment = ({ comment, postId, commentId }) => {
 	const dispatch = useDispatch();
 
 	const handleDelete = () => {
-		dispatch(removeComment({ commentId, postId }));
+		dispatch(removeDatabaseComment({ commentId, postId }));
 	};
 
 	return (

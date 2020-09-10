@@ -11,12 +11,12 @@ import {
 	FormFeedback,
 } from "reactstrap";
 import { useFormik } from "formik";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import validate from "./helpers/blogFormValidator";
-import { updatePost } from "./actions";
+import { addDatabasePost, updateDatabasePost } from "./actions";
 
 const BlogForm = ({ edit = false, setEdit = false, id = false }) => {
-	const posts = useSelector((st) => st.posts);
+	const posts = useSelector((st) => st.posts, shallowEqual);
 	const INITIAL_STATE = id
 		? posts[id]
 		: { title: "", description: "", body: "" };
@@ -37,10 +37,10 @@ const BlogForm = ({ edit = false, setEdit = false, id = false }) => {
 		validate,
 		onSubmit: (values) => {
 			if (!edit) {
-				dispatch(updatePost(values));
+				dispatch(addDatabasePost(values));
 				history.push("/");
 			} else if (edit) {
-				dispatch(updatePost({ ...values, id }));
+				dispatch(updateDatabasePost({ ...values, id }));
 				setEdit(false);
 			}
 		},

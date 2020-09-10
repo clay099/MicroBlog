@@ -3,16 +3,19 @@ import BlogForm from "./BlogForm";
 import "./Post.css";
 import Comments from "./Comments";
 import CommentForm from "./CommentForm";
-import { removePost } from "./actions";
+import { removeDatabasePost } from "./actions";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const Post = ({ post, id }) => {
 	const [edit, setEdit] = useState(false);
 	let { title, description, body } = post;
+	const history = useHistory();
 
 	const dispatch = useDispatch();
 	const handleDelete = () => {
-		dispatch(removePost(id));
+		dispatch(removeDatabasePost(id));
+		history.push("/");
 	};
 
 	const handleEdit = () => {

@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Button, Form, FormGroup, Input, FormFeedback } from "reactstrap";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { updateComment } from "./actions";
+import { addDatabaseComment } from "./actions";
 
 const validate = (values) => {
 	const errors = {};
@@ -29,7 +29,7 @@ const CommentForm = ({ id }) => {
 		initialValues: commentFormInitialState,
 		validate,
 		onSubmit: (values) => {
-			dispatch(updateComment({ postId: id, ...values }));
+			dispatch(addDatabaseComment({ postId: id, ...values }));
 			resetForm();
 		},
 	});

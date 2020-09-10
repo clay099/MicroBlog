@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Comment from "./Comment";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { getComments } from "./actions";
 
 const Comments = ({ id }) => {
-	const comments = useSelector((st) => st.comments[id]);
+	const comments = useSelector((st) => st.comments[id], shallowEqual);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(getComments(id));
+	}, [dispatch, id]);
 
 	if (comments === undefined) {
 		return null;
@@ -14,7 +20,7 @@ const Comments = ({ id }) => {
 			{Object.keys(comments).map((commentId) => (
 				<Comment
 					key={commentId}
-					comment={comments[commentId].comment}
+					comment={comments[commentId]}
 					postId={id}
 					commentId={commentId}
 				/>
