@@ -1,7 +1,7 @@
 import React from "react";
 import "./VoteUp.css";
 import { useDispatch } from "react-redux";
-import { voteDatabase } from "./actions";
+import { voteDatabase } from "../actions/actions";
 
 const VoteUp = ({ id }) => {
 	const dispatch = useDispatch();

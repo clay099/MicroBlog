@@ -1,4 +1,8 @@
-import { UPDATE_COMMENT, REMOVE_COMMENT, GET_COMMENTS } from "../actionTypes";
+import {
+	UPDATE_COMMENT,
+	REMOVE_COMMENT,
+	GET_COMMENTS,
+} from "../actions/actionTypes";
 import cloneDeep from "lodash/cloneDeep";
 
 const INITIAL_STATE = {};

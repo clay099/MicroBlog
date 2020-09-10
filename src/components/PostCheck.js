@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Post from "./Post";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { getPost } from "./actions";
+import { getPost } from "../actions/actions";
 
 const PostCheck = () => {
 	let { id } = useParams();

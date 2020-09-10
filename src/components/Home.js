@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Summary from "./Summary";
 import { CardDeck } from "reactstrap";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { getAllPosts } from "./actions";
+import { getAllPosts } from "../actions/actions";
 
 const Home = () => {
 	// const posts = useSelector((st) => st.posts, shallowEqual);

@@ -12,8 +12,8 @@ import {
 } from "reactstrap";
 import { useFormik } from "formik";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import validate from "./helpers/blogFormValidator";
-import { addDatabasePost, updateDatabasePost } from "./actions";
+import validate from "../helpers/blogFormValidator";
+import { addDatabasePost, updateDatabasePost } from "../actions/actions";
 
 const BlogForm = ({ edit = false, setEdit = false, id = false }) => {
 	const posts = useSelector((st) => st.posts, shallowEqual);

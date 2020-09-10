@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Button, Form, FormGroup, Input, FormFeedback } from "reactstrap";
 import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
-import { addDatabaseComment } from "./actions";
+import { addDatabaseComment } from "../actions/actions";
 
 const validate = (values) => {
 	const errors = {};

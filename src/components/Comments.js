@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Comment from "./Comment";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { getComments } from "./actions";
+import { getComments } from "../actions/actions";
 
 const Comments = ({ id }) => {
 	const comments = useSelector((st) => st.comments[id], shallowEqual);

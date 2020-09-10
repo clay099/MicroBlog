@@ -3,7 +3,7 @@ import BlogForm from "./BlogForm";
 import "./Post.css";
 import Comments from "./Comments";
 import CommentForm from "./CommentForm";
-import { removeDatabasePost } from "./actions";
+import { removeDatabasePost } from "../actions/actions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Votes from "./Votes";

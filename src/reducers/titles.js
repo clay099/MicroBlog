@@ -1,4 +1,4 @@
-import { UPDATE_POST, REMOVE_POST, GET_POSTS } from "../actionTypes";
+import { UPDATE_POST, REMOVE_POST, GET_POSTS } from "../actions/actionTypes";
 import cloneDeep from "lodash/cloneDeep";
 const INITIAL_STATE = {};
 

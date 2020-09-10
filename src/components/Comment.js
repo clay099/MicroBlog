@@ -1,7 +1,7 @@
 import React from "react";
 import "./Comment.css";
 import { useDispatch } from "react-redux";
-import { removeDatabaseComment } from "./actions";
+import { removeDatabaseComment } from "../actions/actions";
 
 const Comment = ({ comment, postId, commentId }) => {
 	const dispatch = useDispatch();
