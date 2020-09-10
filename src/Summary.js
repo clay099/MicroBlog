@@ -3,8 +3,8 @@ import "./Summary.css";
 import { Card, CardTitle, CardText, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
 
-const Summary = ({ post }) => {
-	const { title, description, id } = post;
+const Summary = ({ post, id }) => {
+	const { title, description } = post;
 	return (
 		<div className="Summary">
 			<Card>

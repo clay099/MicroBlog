@@ -1,20 +1,20 @@
 import React from "react";
 import { useParams, Redirect } from "react-router-dom";
 import Post from "./Post";
+import { useSelector } from "react-redux";
 
-const PostCheck = ({ posts, setPosts }) => {
+const PostCheck = () => {
 	let { id } = useParams();
-	const post = posts.filter((p) => {
-		id = +id;
-		return p.id === id;
-	});
+	const posts = useSelector((st) => st.posts);
 
-	if (post.length === 0) {
+	const post = posts[+id];
+
+	if (post === undefined) {
 		return <Redirect to="/" />;
 	}
 	return (
 		<div>
-			<Post post={post} setPosts={setPosts} />
+			<Post post={post} id={id} />
 		</div>
 	);
 };

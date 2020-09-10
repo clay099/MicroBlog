@@ -3,13 +3,16 @@ import BlogForm from "./BlogForm";
 import "./Post.css";
 import Comments from "./Comments";
 import CommentForm from "./CommentForm";
+import { removePost } from "./actions";
+import { useDispatch } from "react-redux";
 
-const Post = ({ post, setPosts }) => {
+const Post = ({ post, id }) => {
 	const [edit, setEdit] = useState(false);
-	let { title, description, body, id, comments } = post[0];
+	let { title, description, body } = post;
 
+	const dispatch = useDispatch();
 	const handleDelete = () => {
-		setPosts((posts) => posts.filter((post) => post.id !== id));
+		dispatch(removePost(id));
 	};
 
 	const handleEdit = () => {
@@ -20,8 +23,8 @@ const Post = ({ post, setPosts }) => {
 		<>
 			<hr />
 			<h4 className="display-5 Comments">Comments</h4>
-			<Comments comments={comments} setPosts={setPosts} id={id} />
-			<CommentForm setPosts={setPosts} id={id} />
+			<Comments id={id} />
+			<CommentForm id={id} />
 		</>
 	);
 
@@ -48,13 +51,7 @@ const Post = ({ post, setPosts }) => {
 		postData = (
 			<>
 				<h5>Edit Post</h5>
-				<BlogForm
-					setPosts={setPosts}
-					id={id}
-					edit={edit}
-					setEdit={setEdit}
-					INITIAL_STATE={post[0]}
-				/>
+				<BlogForm id={id} edit={edit} setEdit={setEdit} />
 			</>
 		);
 	}

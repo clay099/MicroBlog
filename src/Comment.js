@@ -1,25 +1,15 @@
 import React from "react";
 import "./Comment.css";
+import { useDispatch } from "react-redux";
+import { removeComment } from "./actions";
 
-const Comment = ({ comment, setPosts, id }) => {
+const Comment = ({ comment, postId, commentId }) => {
+	const dispatch = useDispatch();
+
 	const handleDelete = () => {
-		// uses setPosts hook to change data
-		setPosts((posts) =>
-			// maps over all items in list
-			[...posts].map((p) =>
-				// checks if post is the current one we are on
-				p.id !== id
-					? // if not current post return the post
-					  p
-					: {
-							// if is the post spread the post data
-							...p,
-							// filter all post data to remove the current comment
-							comments: p.comments.filter((c) => c !== comment),
-					  }
-			)
-		);
+		dispatch(removeComment({ commentId, postId }));
 	};
+
 	return (
 		<p className="Comment">
 			{comment}

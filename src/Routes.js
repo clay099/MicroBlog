@@ -4,17 +4,17 @@ import Home from "./Home";
 import New from "./New";
 import PostCheck from "./PostCheck";
 
-const Routes = ({ posts, setPosts, id, setId }) => {
+const Routes = () => {
 	return (
 		<Switch>
 			<Route exact path="/new">
-				<New posts={posts} setPosts={setPosts} id={id} setId={setId} />
+				<New />
 			</Route>
 			<Route exact path="/:id">
-				<PostCheck posts={posts} setPosts={setPosts} />
+				<PostCheck />
 			</Route>
 			<Route exact path="/">
-				<Home posts={posts} />
+				<Home />
 			</Route>
 			<Redirect to="/" />
 		</Switch>

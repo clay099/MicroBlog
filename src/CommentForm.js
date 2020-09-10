@@ -1,7 +1,8 @@
 import React from "react";
 import { Col, Button, Form, FormGroup, Input, FormFeedback } from "reactstrap";
-import useFields from "./hooks/useFields";
 import { useFormik } from "formik";
+import { useDispatch } from "react-redux";
+import { updateComment } from "./actions";
 
 const validate = (values) => {
 	const errors = {};
@@ -12,9 +13,10 @@ const validate = (values) => {
 	return errors;
 };
 
-const CommentForm = ({ setPosts, id }) => {
-  const commentFormInitialState = { comment: "" };
-  
+const CommentForm = ({ id }) => {
+	const commentFormInitialState = { comment: "" };
+	const dispatch = useDispatch();
+
 	const {
 		values,
 		handleSubmit,
@@ -27,16 +29,7 @@ const CommentForm = ({ setPosts, id }) => {
 		initialValues: commentFormInitialState,
 		validate,
 		onSubmit: (values) => {
-			setPosts((posts) =>
-				[...posts].map((p) =>
-					p.id !== id
-						? p
-						: {
-								...p,
-								comments: [...p.comments, values.comment],
-						  }
-				)
-			);
+			dispatch(updateComment({ postId: id, ...values }));
 			resetForm();
 		},
 	});
@@ -61,7 +54,9 @@ const CommentForm = ({ setPosts, id }) => {
 						) : null}
 					</Col>
 					<Col sm={2}>
-						<Button color="primary">Add</Button>
+						<Button type="submit" color="primary">
+							Add
+						</Button>
 					</Col>
 				</FormGroup>
 			</Form>

@@ -1,15 +1,23 @@
 import React from "react";
 import Comment from "./Comment";
+import { useSelector } from "react-redux";
 
-const Comments = ({ comments, setPosts, id }) => {
-	if (comments.length === 0) {
+const Comments = ({ id }) => {
+	const comments = useSelector((st) => st.comments[id]);
+
+	if (comments === undefined) {
 		return null;
 	}
 
 	return (
 		<div className="Comments">
-			{comments.map((comment) => (
-				<Comment comment={comment} setPosts={setPosts} id={id} />
+			{Object.keys(comments).map((commentId) => (
+				<Comment
+					key={commentId}
+					comment={comments[commentId].comment}
+					postId={id}
+					commentId={commentId}
+				/>
 			))}
 		</div>
 	);

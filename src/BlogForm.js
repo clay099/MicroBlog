@@ -11,35 +11,19 @@ import {
 	FormFeedback,
 } from "reactstrap";
 import { useFormik } from "formik";
+import { useSelector, useDispatch } from "react-redux";
+import validate from "./helpers/blogFormValidator";
+import { updatePost } from "./actions";
 
-const validate = (values) => {
-	const errors = {};
-	if (!values.title) {
-		errors.title = "Required";
-	} else if (values.title.length > 20) {
-		errors.title = "Must be 20 characters or less";
-	}
+const BlogForm = ({ edit = false, setEdit = false, id = false }) => {
+	const posts = useSelector((st) => st.posts);
+	const INITIAL_STATE = id
+		? posts[id]
+		: { title: "", description: "", body: "" };
 
-	if (!values.description) {
-		errors.description = "Required";
-	} else if (values.description.length > 30) {
-		errors.description = "Must be 30 characters or less";
-	}
+	const dispatch = useDispatch();
+	const history = useHistory();
 
-	if (!values.body) {
-		errors.body = "Required";
-	}
-	return errors;
-};
-
-const BlogForm = ({
-	setPosts,
-	id,
-	setId = false,
-	edit = false,
-	setEdit = false,
-	INITIAL_STATE = { title: "", description: "", body: "" },
-}) => {
 	const {
 		values,
 		handleSubmit,
@@ -53,26 +37,14 @@ const BlogForm = ({
 		validate,
 		onSubmit: (values) => {
 			if (!edit) {
-				setPosts((posts) => [
-					...posts,
-					{ ...values, id, comments: [] },
-				]);
-				setId((id) => id + 1);
+				dispatch(updatePost(values));
 				history.push("/");
 			} else if (edit) {
-				setPosts((posts) =>
-					[...posts].map((p) =>
-						p.id !== id
-							? p
-							: { ...values, id, comments: [...p.comments] }
-					)
-				);
+				dispatch(updatePost({ ...values, id }));
 				setEdit(false);
 			}
 		},
 	});
-
-	const history = useHistory();
 
 	const handleCancel = () => {
 		resetForm();
@@ -145,7 +117,9 @@ const BlogForm = ({
 				<FormGroup check row>
 					<Row>
 						<Col sm="1">
-							<Button color="primary">Save</Button>
+							<Button type="submit" color="primary">
+								Save
+							</Button>
 						</Col>
 						<Col>
 							<Button onClick={handleCancel} color="danger">
